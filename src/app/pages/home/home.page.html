@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Buy Order Manager
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding login-prompt">
+    Please
+    <ion-button
+      fill="clear"
+      (click)="slidePrevious()"
+      class="login-button">
+      Login
+    </ion-button>
+    or 
+    <ion-button
+      fill="clear"
+      (click)="slideNext()"
+      class="login-button">
+      Sign Up
+    </ion-button>
+  </div>
+
+  <ion-slides #loginSlider class="ion-padding">
+    <ion-slide>Login</ion-slide>
+    <ion-slide>Sign Up</ion-slide>
+  </ion-slides>
+</ion-content>
