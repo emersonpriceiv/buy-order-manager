@@ -10,3 +10,6 @@
 
 #### Using the App ####
 Once the app is running, the serve command should open it in a browser. It will look best in the dev console with the mobile form factor (I used IPhone 6/7/8).
+
+#### Unit Tests ####
+To run the unit tests, complete with per-test output and coverage summary, run `npm test`
