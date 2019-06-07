@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { LoginComponent } from '@components';
+import { LoginComponent, SignUpComponent } from '@components';
 
 import { HomePage } from './home.page';
 
@@ -22,7 +22,8 @@ import { HomePage } from './home.page';
   ],
   declarations: [
     HomePage,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ]
 })
 export class HomePageModule {}
