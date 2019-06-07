@@ -1,3 +1,24 @@
-<p>
-  sign-up works!
-</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <ion-list inset>
+    <ion-item>
+      <ion-input
+        type="text"
+        placeholder="Email"
+        formControlName="email">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="password"
+        placeholder="Password"
+        formControlName="password">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button
+    type="submit"
+    fill="outline"
+    [disabled]="!signUpForm.valid">
+    Sign up
+  </ion-button>
+</form>
