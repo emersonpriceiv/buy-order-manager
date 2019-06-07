@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonSlides} from '@ionic/angular';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +9,11 @@ import { IonSlides} from '@ionic/angular';
 export class HomePage {
   @ViewChild('loginSlider') loginSlides: IonSlides;
 
-  slideNext(){
+  public slideNext(){
     this.loginSlides.slideNext();
   }
 
-  slidePrevious(){
+  public slidePrevious(){
     this.loginSlides.slidePrev();
   }
 }
