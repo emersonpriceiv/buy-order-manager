@@ -10,7 +10,7 @@ import { UserService } from '@services';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  signUpForm: FormGroup;
+  public signUpForm: FormGroup;
 
   constructor(formBuilder: FormBuilder, private userService: UserService, private navController: NavController) {
     this.signUpForm = formBuilder.group({
