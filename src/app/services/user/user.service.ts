@@ -14,7 +14,7 @@ export class UserService {
     });
   }
     
-  get selfEmail() {
+  get email(): string {
     return this.user.email;
   }
 

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+
+import { UserService } from '@services';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SignUpComponent {
   signUpForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, private userService: UserService, private navController: NavController) {
     this.signUpForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
@@ -17,6 +20,6 @@ export class SignUpComponent {
   }
 
   public onSubmit(): void {
-    console.log(this.signUpForm.value);
+    this.userService.signUp(this.signUpForm.value).then(() => this.navController.navigateForward('/buy-order-list'));
   }
 }

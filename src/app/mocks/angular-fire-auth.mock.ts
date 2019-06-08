@@ -1,4 +1,4 @@
-export class MockAngularFireAuth {
+export class AngularFireAuthMock {
     public authState = {
         subscribe: () => {}
     }

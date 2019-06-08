@@ -21,7 +21,8 @@
     "paths": {
       "@components": ["src/app/components"],
       "@pages": ["src/app/pages"],
-      "@mocks": ["src/app/mocks"]
+      "@mocks": ["src/app/mocks"],
+      "@services": ["src/app/services"]
     }
   }
 }
