@@ -37,7 +37,7 @@ describe('SignUpComponent', () => {
   });
 
   describe('onSubmit()', () => {
-    it('submits the credentials to the user service', () => {
+    it('submits the credentials to the user service for sign up', () => {
       const userService: UserService = TestBed.get(UserService);
       const signUpSpy = spyOn(userService, 'signUp').and.returnValue(Promise.resolve(''));;
       const email = 'testEmail';
