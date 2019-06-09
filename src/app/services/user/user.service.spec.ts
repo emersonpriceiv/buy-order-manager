@@ -20,9 +20,9 @@ describe('UserService', () => {
     expect(userService).toBeTruthy();
   });
 
-  describe('get email()', () => {
-    it('returns the user\'s email', () => {
-      expect(userService.email).toEqual('testEmail');
+  describe('get uid()', () => {
+    it('returns the user\'s uid', () => {
+      expect(userService.uid).toEqual('testUid');
     });
   });
 

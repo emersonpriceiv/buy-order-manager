@@ -14,8 +14,8 @@ export class UserService {
     });
   }
     
-  get email(): string {
-    return this.user.email;
+  get uid(): string {
+    return this.user.uid;
   }
 
   get authenticated(): boolean {
