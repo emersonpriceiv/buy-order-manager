@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "@components": ["src/app/components"],
       "@pages": ["src/app/pages"],
       "@mocks": ["src/app/mocks"],
-      "@services": ["src/app/services"]
+      "@services": ["src/app/services"],
+      "@interfaces": ["src/app/interfaces"]
     }
   }
 }

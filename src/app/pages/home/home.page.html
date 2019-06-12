@@ -6,30 +6,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding login-prompt">
-    Please
+<ion-content padding>
+  <form [formGroup]="userForm">
+    <ion-list inset>
+      <ion-item>
+        <ion-input
+          type="text"
+          placeholder="Email"
+          formControlName="email">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          type="password"
+          placeholder="Password"
+          formControlName="password">
+        </ion-input>
+      </ion-item>
+    </ion-list>
     <ion-button
-      fill="clear"
-      (click)="slidePrevious()"
-      class="login-button">
-      Login
+      fill="outline"
+      [disabled]="!userForm.valid"
+      (click)="logIn()">
+      login
     </ion-button>
-    or 
     <ion-button
-      fill="clear"
-      (click)="slideNext()"
-      class="login-button">
-      Sign Up
+      fill="outline"
+      [disabled]="!userForm.valid"
+      (click)="signUp">
+      sign up
     </ion-button>
-  </div>
-
-  <ion-slides #loginSlider class="ion-padding">
-    <ion-slide>
-      <app-login></app-login>
-    </ion-slide>
-    <ion-slide>
-      <app-sign-up></app-sign-up>
-    </ion-slide>
-  </ion-slides>
+  </form>
 </ion-content>

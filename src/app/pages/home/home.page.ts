@@ -1,5 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+
+import { UserService } from '@services';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +10,24 @@ import { IonSlides } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  @ViewChild('loginSlider') loginSlides: IonSlides;
+  public userForm: FormGroup;
 
-  public slideNext(){
-    this.loginSlides.slideNext();
+  constructor(formBuilder: FormBuilder, private userService: UserService, private navController: NavController) {
+    this.userForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+    });
   }
 
-  public slidePrevious(){
-    this.loginSlides.slidePrev();
+  public logIn(): void {
+    this.userService.signIn(this.userForm.value).then(() => {
+      this.navController.navigateForward('/buy-order-list')
+    });
+  }
+
+  public signUp(): void {
+    this.userService.signUp(this.userForm.value).then(() => {
+      this.navController.navigateForward('/buy-order-list')
+    });
   }
 }
