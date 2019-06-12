@@ -11,6 +11,8 @@ import { UserService } from '@services';
 })
 export class HomePage {
   public userForm: FormGroup;
+  public loginLoading = false;
+  public signUpLoading = false;
 
   constructor(formBuilder: FormBuilder, private userService: UserService, private navController: NavController) {
     this.userForm = formBuilder.group({
@@ -20,14 +22,16 @@ export class HomePage {
   }
 
   public logIn(): void {
+    this.loginLoading = true;
     this.userService.signIn(this.userForm.value).then(() => {
-      this.navController.navigateForward('/buy-order-list')
+      this.navController.navigateForward('/buy-order-list');
     });
   }
 
   public signUp(): void {
+    this.signUpLoading = true;
     this.userService.signUp(this.userForm.value).then(() => {
-      this.navController.navigateForward('/buy-order-list')
+      this.navController.navigateForward('/buy-order-list');
     });
   }
 }

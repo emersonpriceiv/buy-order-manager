@@ -10,7 +10,7 @@ export class BuyOrderService {
   private buyOrders: BuyOrder[] = [];
 
   constructor(private firebaseDB: AngularFireDatabase) {
-    const buyOrderObservable = this.firebaseDB.list('/buy-orders').valueChanges();
+    const buyOrderObservable = this.firebaseDB.list('/buyOrders').valueChanges();
 
     buyOrderObservable.subscribe((data: BuyOrder[]) => {
       this.buyOrders = data;
