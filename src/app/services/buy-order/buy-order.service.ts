@@ -2,29 +2,24 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase } from '@angular/fire/database';
 import { BuyOrder } from '@interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BuyOrderService {
-  private buyOrders: BuyOrder[] = [];
+  private _buyOrderStream: Observable<unknown[]>;
 
   constructor(private firebaseDB: AngularFireDatabase) {
-    const buyOrderObservable = this.firebaseDB.list('/buyOrders').valueChanges();
+    this._buyOrderStream = this.firebaseDB.list('/buyOrders').valueChanges();
+  }
 
-    buyOrderObservable.subscribe((data: BuyOrder[]) => {
-      this.buyOrders = data;
-    });
+  get buyOrderStream() {
+    return this._buyOrderStream;
   }
 
   public addBuyOrder(buyOrder: BuyOrder) {
     this.firebaseDB.list('/buyOrders').push(buyOrder);
   }
-
-  public getBuyOrders(uid: string): BuyOrder[] {
-    return this.buyOrders.filter((buyOrder: BuyOrder) => {
-      return buyOrder.uid === uid;
-    });
-  };
 }
 

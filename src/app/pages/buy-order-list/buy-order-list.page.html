@@ -5,9 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let buyOrder of buyOrders">
-      {{ buyOrder.name }}
-    </ion-item>
-  </ion-list>
+    <ion-card *ngFor="let buyOrder of buyOrders" (click)="editOrder(buyOrder)">
+      <ion-card-header>
+        <ion-card-title>{{ buyOrder.name }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div>Max Bid Price: {{ buyOrder.maxBidPrice }}</div>
+        <div>Data Package Type: {{ buyOrder.dataPackageType }}</div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="new-order-card" (click)="newOrder()">
+        <ion-card-header>
+          <ion-card-title>
+              New Buy Order
+            </ion-card-title>
+        </ion-card-header>
+    </ion-card>
 </ion-content>

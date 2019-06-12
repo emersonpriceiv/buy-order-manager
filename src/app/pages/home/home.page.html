@@ -26,20 +26,20 @@
     </ion-list>
     <div padding class="login-buttons">
       <ion-button
-      fill="outline"
-      [disabled]="!userForm.valid"
-      (click)="logIn()">
-      login
-      <ion-spinner *ngIf="loginLoading"></ion-spinner>
-    </ion-button>
-    or
-    <ion-button
-      fill="outline"
-      [disabled]="!userForm.valid"
-      (click)="signUp">
-      sign up
-      <ion-spinner *ngIf="signUpLoading"></ion-spinner>
-    </ion-button>
+        fill="outline"
+        [disabled]="!userForm.valid"
+        (click)="logIn()">
+        LOGIN
+        <ion-spinner *ngIf="loginLoading"></ion-spinner>
+      </ion-button>
+      or
+      <ion-button
+        fill="outline"
+        [disabled]="!userForm.valid"
+        (click)="signUp">
+        SIGN UP
+        <ion-spinner *ngIf="signUpLoading"></ion-spinner>
+      </ion-button>
     </div>
   </form>
 </ion-content>
