@@ -11,7 +11,7 @@
       </ion-card-header>
     
       <ion-card-content>
-        <div>Max Bid Price: {{ buyOrder.maxBidPrice }}</div>
+        <div>Max Bid Price: {{ buyOrder.maxBidPrice | currency }}</div>
         <div>Data Package Type: {{ buyOrder.dataPackageType }}</div>
       </ion-card-content>
     </ion-card>
@@ -19,8 +19,11 @@
     <ion-card class="new-order-card" (click)="newOrder()">
         <ion-card-header>
           <ion-card-title>
-              New Buy Order
-            </ion-card-title>
+            New Buy Order
+          </ion-card-title>
         </ion-card-header>
+        <ion-card-content>
+            Click a buy order to edit, or here to get started!
+          </ion-card-content>
     </ion-card>
 </ion-content>

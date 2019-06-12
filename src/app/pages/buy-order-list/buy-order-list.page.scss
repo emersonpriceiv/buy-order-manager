@@ -1,5 +1,7 @@
 .new-order-card {
-  ion-card-header {
-    text-align: center;
+  text-align: center;
+
+  ion-card-content {
+    padding-top: 0;
   }
 }

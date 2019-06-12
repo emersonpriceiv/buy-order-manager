@@ -34,10 +34,4 @@ describe('BuyOrderService', () => {
       expect(addToListSpy).toHaveBeenCalled();
     });
   });
-
-  describe('getBuyOrders()', () => {
-    it('gets buy orders for the provided uid', () => {
-      expect(buyOrderService.getBuyOrders('testUid')[0].name).toEqual('testName');
-    })
-  });
 });
