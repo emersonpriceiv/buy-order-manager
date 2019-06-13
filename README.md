@@ -22,5 +22,5 @@ To run the unit tests, complete with per-test output and coverage summary, run `
 [Firebase](https://firebase.google.com/) - Used for authentication and real time database as a service.
 
 #### Future Plans ####
-For this mvp, I kept decent code coverage as I developed, but I would like to take more time to reach some of the more difficult corners of the application. From a UI perspective, I kept things bare-boned to focus on functionality and addressed the mobile form factor first. While the app should scale reasonably well due to Ionic's responsive design, it will not be pretty as larger form factors.
+For this mvp, I kept decent code coverage as I developed, but I would like to take more time to reach some of the more difficult corners of the application. From a UI perspective, I kept things bare-boned to focus on functionality and addressed the mobile form factor first. While the app should scale reasonably well due to Ionic's responsive design, it will not be pretty at larger form factors. Validation and error messaging also needs more consideration, though I did implement a fair amount of form field validation to ensure basic functionality.
 
