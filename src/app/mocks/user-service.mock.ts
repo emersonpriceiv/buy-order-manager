@@ -4,17 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UserServiceMock {
-  private user: {};
-    
-  get email(): string {
-    return '';
+  get uid(): string {
+    return 'testUid';
   }
 
   get authenticated(): boolean {
     return true;
   }
 
-  signIn(credentials) {
+  signIn() {
 	  return new Promise(() => {});
   }
 
@@ -22,7 +20,7 @@ export class UserServiceMock {
     return new Promise(() => {});
   }
     
-  signUp(credentials) {
+  signUp() {
     return new Promise(() => {});
   }
 }

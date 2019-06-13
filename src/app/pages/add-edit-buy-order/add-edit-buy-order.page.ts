@@ -36,7 +36,10 @@ export class AddEditBuyOrderPage {
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(params => {
       this.orderName = params['name'];
-      this.title = 'Edit';
+
+      if (this.orderName) {
+        this.title = 'Edit';
+      }
     });
 
     this.buyOrderSub = this.buyOrderService.buyOrderStream.subscribe((data: BuyOrder[]) => {
@@ -65,10 +68,6 @@ export class AddEditBuyOrderPage {
     this.buyOrderSub.unsubscribe();
   }
 
-  public cancel() {
-    this.navController.navigateBack('/buy-order-list');
-  }
-
   public save() {
     const newBuyOrder = {...this.buyOrderForm.value, uid: this.userService.uid};
 
@@ -76,9 +75,7 @@ export class AddEditBuyOrderPage {
       this.buyOrderService.remove(this.oldBuyOrder.name);
     } 
 
-    this.buyOrderService.addBuyOrder(newBuyOrder).then(() => {
-      this.navController.navigateBack('/buy-order-list');
-    });
+    this.buyOrderService.addBuyOrder(newBuyOrder);
   }
 
   public async showConfirmAlert() {

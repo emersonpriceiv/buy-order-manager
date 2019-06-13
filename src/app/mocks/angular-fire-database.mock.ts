@@ -6,11 +6,12 @@ export class AngularFireDatabaseMock {
     valueChanges: () => Observable.of([
       {
         uid: 'testUid',
-        name: 'testName'}
-    ]),
-      push: (item) => {
-        this.items.push(item);
+        name: 'testName'
       }
+    ]),
+    push: (item) => {
+      this.items.push(item);
+    }
   }
 
   public list = () => {

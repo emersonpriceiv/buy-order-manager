@@ -33,13 +33,14 @@
   </form>
   <ion-button
     (click)="save()"
+    [routerLink]="'/buy-order-list'" routerDirection="back"
     expand="block"
     fill="outline"
     [disabled]="!buyOrderForm.valid">
     SAVE
   </ion-button>
   <ion-button
-    (click)='cancel()'
+    [routerLink]="'/buy-order-list'" routerDirection="back"
     expand="block"
     fill="outline">
     CANCEL

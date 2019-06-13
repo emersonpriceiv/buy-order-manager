@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { AngularFireDatabase } from '@angular/fire/database';
-import { BuyOrder } from '@interfaces';
 import { Observable } from 'rxjs';
+
+import { BuyOrder } from '@interfaces';
+
 
 @Injectable({
   providedIn: 'root'
