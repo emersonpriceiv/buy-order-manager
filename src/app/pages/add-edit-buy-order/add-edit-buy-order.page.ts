@@ -16,7 +16,6 @@ import { NavController, AlertController } from '@ionic/angular';
 })
 export class AddEditBuyOrderPage {
   public title: string = 'Add';
-  public oldBuyOrder: BuyOrder;
   public buyOrderForm: FormGroup;
   public dataPackageTypeOptions: string[] = DATA_PACKAGE_TYPE_OPTIONS;
 
@@ -33,6 +32,22 @@ export class AddEditBuyOrderPage {
     private alertController: AlertController
   ) {}
 
+  private _oldBuyOrder: BuyOrder;
+
+  get oldBuyOrder() {
+    return this._oldBuyOrder;
+  }
+
+  set oldBuyOrder(buyOrder) {
+    this._oldBuyOrder = buyOrder;
+
+    if (buyOrder) {
+      this.buyOrderForm.controls['name'].setValue(this.oldBuyOrder.name);
+      this.buyOrderForm.controls['maxBidPrice'].setValue(this.oldBuyOrder.maxBidPrice);
+      this.buyOrderForm.controls['dataPackageType'].setValue(this.oldBuyOrder.dataPackageType);
+    }
+  }
+
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(params => {
       this.orderName = params['name'];
@@ -48,12 +63,6 @@ export class AddEditBuyOrderPage {
       }).find((buyOrder: BuyOrder) => {
         return this.orderName && this.orderName === buyOrder.name;
       });
-
-      if (this.oldBuyOrder) {
-        this.buyOrderForm.controls['name'].setValue(this.oldBuyOrder.name);
-        this.buyOrderForm.controls['maxBidPrice'].setValue(this.oldBuyOrder.maxBidPrice);
-        this.buyOrderForm.controls['dataPackageType'].setValue(this.oldBuyOrder.dataPackageType);
-      }
     });
 
     this.buyOrderForm = this.formBuilder.group({

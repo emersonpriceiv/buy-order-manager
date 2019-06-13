@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, NavController, AlertController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
@@ -54,6 +54,23 @@ describe('AddEditBuyOrderPage', () => {
     });
   });
 
+  describe('set oldBuyOrder', () => {
+    it('sets default form values if passed in a buy order', () => {
+      component.oldBuyOrder = {
+        name: 'testName',
+        maxBidPrice: 100,
+        dataPackageType: 'Device Location',
+        uid: 'testUid'
+      }
+
+      expect(component.buyOrderForm.value).toEqual({
+        name: 'testName',
+        maxBidPrice: 100,
+        dataPackageType: 'Device Location'
+      });
+    });
+  });
+
   describe('save()', () => {
     it('creates new buy order', () => {
       const buyOrderService = TestBed.get(BuyOrderService);
@@ -96,6 +113,15 @@ describe('AddEditBuyOrderPage', () => {
       component.save();
       expect(removeSpy).toHaveBeenCalledWith(component.oldBuyOrder.name);
       expect(addOrderSpy).toHaveBeenCalledWith({...formObject, uid: userService.uid});
+    });
+  });
+
+  describe('showConfirmAlert()', () => {
+    it('displays a confirmation alert', () => {
+      const alertController = TestBed.get(AlertController);
+      const createSpy = spyOn(alertController, 'create').and.returnValue(Promise.resolve({present: () => {}}));
+      component.showConfirmAlert();
+      expect(createSpy).toHaveBeenCalled();
     });
   });
 });
