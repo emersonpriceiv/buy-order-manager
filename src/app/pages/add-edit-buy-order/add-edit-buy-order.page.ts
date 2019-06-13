@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { BuyOrder, DATA_PACKAGE_TYPE_OPTIONS } from '@interfaces';
 
 import { BuyOrderService, UserService } from '@services';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -29,7 +29,8 @@ export class AddEditBuyOrderPage {
     private buyOrderService: BuyOrderService,
     private formBuilder: FormBuilder,
     private navController: NavController,
-    private userService: UserService
+    private userService: UserService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -64,11 +65,11 @@ export class AddEditBuyOrderPage {
     this.buyOrderSub.unsubscribe();
   }
 
-  cancel() {
+  public cancel() {
     this.navController.navigateBack('/buy-order-list');
   }
 
-  save() {
+  public save() {
     const newBuyOrder = {...this.buyOrderForm.value, uid: this.userService.uid};
 
     if (this.oldBuyOrder){
@@ -80,8 +81,22 @@ export class AddEditBuyOrderPage {
     });
   }
 
-  remove() {
-    this.buyOrderService.remove(this.oldBuyOrder.name);
-    this.navController.navigateBack('/buy-order-list');
+  public async showConfirmAlert() {
+    const removeConfirmAlert = await this.alertController.create({
+      header: 'Confirm delete buy order',
+      message: 'Are you sure you want to permanently delete this buy order?',
+      buttons: [
+        'No',
+        {
+          text: 'Yes',
+          handler: () => {
+            this.buyOrderService.remove(this.oldBuyOrder.name);
+            this.navController.navigateBack('/buy-order-list');
+          }
+        }
+      ]
+    });
+
+    await removeConfirmAlert.present();
   }
 }
