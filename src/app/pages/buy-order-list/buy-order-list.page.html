@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let buyOrder of buyOrders" (click)="editOrder(buyOrder)">
+    <ion-card *ngFor="let buyOrder of buyOrders" [routerLink]="'/add-edit-buy-order/' + buyOrder.name" routerDirection="forward">
       <ion-card-header>
         <ion-card-title>{{ buyOrder.name }}</ion-card-title>
       </ion-card-header>
@@ -16,7 +16,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="new-order-card" (click)="newOrder()">
+    <ion-card class="new-order-card" [routerLink]="'/add-edit-buy-order'" routerDirection="forward">
         <ion-card-header>
           <ion-card-title>
             New Buy Order

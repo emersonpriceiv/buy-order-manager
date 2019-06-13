@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 
@@ -9,13 +9,19 @@ import { UserService } from '@services';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   public userForm: FormGroup;
   public loginLoading = false;
   public signUpLoading = false;
 
-  constructor(formBuilder: FormBuilder, private userService: UserService, private navController: NavController) {
-    this.userForm = formBuilder.group({
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private navController: NavController
+  ) {}
+
+  ngOnInit() {
+    this.userForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });

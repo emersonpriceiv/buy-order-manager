@@ -1,36 +1,34 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 
 import { BuyOrder } from '@interfaces';
 
 import { BuyOrderService, UserService } from '@services';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-buy-order-list',
   templateUrl: './buy-order-list.page.html',
   styleUrls: ['./buy-order-list.page.scss'],
 })
-export class BuyOrderListPage implements OnDestroy{
+export class BuyOrderListPage implements OnDestroy, OnInit {
   private buyOrderSub: Subscription;
   public buyOrders: BuyOrder[];
 
-  constructor(buyOrderService: BuyOrderService, userService: UserService) {
-    this.buyOrderSub = buyOrderService.buyOrderStream.subscribe((data: BuyOrder[]) => {
+  constructor(
+    private buyOrderService: BuyOrderService,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.buyOrderSub = this.buyOrderService.buyOrderStream.subscribe((data: BuyOrder[]) => {
       this.buyOrders = data.filter((buyOrder: BuyOrder) => {
-        return buyOrder.uid === userService.uid;
+        return buyOrder.uid === this.userService.uid;
       });
     });
   }
 
   ngOnDestroy() {
     this.buyOrderSub.unsubscribe();
-  }
-
-  public newOrder() {
-    console.log("new order!");
-  }
-
-  public editOrder(buyOrder: BuyOrder) {
-    console.log(buyOrder);
   }
 }
