@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="list-content">
     <ion-card *ngFor="let buyOrder of buyOrders" [routerLink]="'/add-edit-buy-order/' + buyOrder.name" routerDirection="forward">
       <ion-card-header>
         <ion-card-title>{{ buyOrder.name }}</ion-card-title>
@@ -23,7 +23,7 @@
           </ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            Click a buy order to edit, or here to get started!
-          </ion-card-content>
+          Click a buy order to edit, or here to get started!
+        </ion-card-content>
     </ion-card>
 </ion-content>

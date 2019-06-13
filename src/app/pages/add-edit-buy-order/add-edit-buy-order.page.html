@@ -4,7 +4,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  Add edit here!
-  {{buyOrder.name}}
+<ion-content padding>
+  <form [formGroup]="buyOrderForm">
+    <ion-list inset>
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Enter a name"
+          formControlName="name">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Max Bid Price</ion-label>
+        <ion-input
+          type="number"
+          placeholder="Enter a max bid price"
+          formControlName="maxBidPrice">
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Data Package Type</ion-label>
+        <ion-select formControlName="dataPackageType" placeholder="Select One">
+          <ion-select-option *ngFor="let dataPackageTypeOption of dataPackageTypeOptions">{{ dataPackageTypeOption }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </form>
+  <ion-button (click)='cancel()'>
+    CANCEL
+  </ion-button>
+  <ion-button (click)="save()">
+    SAVE
+  </ion-button>
 </ion-content>

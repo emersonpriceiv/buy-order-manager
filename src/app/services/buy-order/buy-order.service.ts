@@ -19,7 +19,18 @@ export class BuyOrderService {
   }
 
   public addBuyOrder(buyOrder: BuyOrder) {
-    this.firebaseDB.list('/buyOrders').push(buyOrder);
+    return this.firebaseDB.list('/buyOrders').push(buyOrder);
+  }
+
+  public remove(name: string) {
+    const buyOrdersRef = this.firebaseDB.database.ref('/buyOrders');
+    const buyOrders = buyOrdersRef.orderByChild('name').equalTo(name);
+
+    buyOrders.on('value', (buyOrdersSnapshot) => {
+      buyOrdersSnapshot.forEach((buyOrderSnapshot: any) => {
+        buyOrderSnapshot.ref().remove();
+      });
+    });
   }
 }
 
