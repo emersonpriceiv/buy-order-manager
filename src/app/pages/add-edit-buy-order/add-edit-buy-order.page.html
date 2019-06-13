@@ -34,7 +34,10 @@
   <ion-button (click)='cancel()'>
     CANCEL
   </ion-button>
-  <ion-button (click)="save()">
+  <ion-button (click)="save()" [disabled]="!buyOrderForm.valid">
     SAVE
+  </ion-button>
+  <ion-button (click)="remove()" *ngIf="oldBuyOrder">
+    DELETE
   </ion-button>
 </ion-content>

@@ -24,11 +24,12 @@ export class BuyOrderService {
 
   public remove(name: string) {
     const buyOrdersRef = this.firebaseDB.database.ref('/buyOrders');
-    const buyOrders = buyOrdersRef.orderByChild('name').equalTo(name);
+    const buyOrder = buyOrdersRef.orderByChild('name').equalTo(name);
 
-    buyOrders.on('value', (buyOrdersSnapshot) => {
-      buyOrdersSnapshot.forEach((buyOrderSnapshot: any) => {
-        buyOrderSnapshot.ref().remove();
+    buyOrder.on('value', (buyOrderSnapshot) => {
+      buyOrderSnapshot.forEach((removeOrder: any) => {
+        removeOrder.ref.remove();
+        buyOrder.off();
       });
     });
   }

@@ -16,7 +16,7 @@ import { NavController } from '@ionic/angular';
 })
 export class AddEditBuyOrderPage {
   public title: string = 'Add';
-  public buyOrder: BuyOrder;
+  public oldBuyOrder: BuyOrder;
   public buyOrderForm: FormGroup;
   public dataPackageTypeOptions: string[] = DATA_PACKAGE_TYPE_OPTIONS;
 
@@ -39,14 +39,16 @@ export class AddEditBuyOrderPage {
     });
 
     this.buyOrderSub = this.buyOrderService.buyOrderStream.subscribe((data: BuyOrder[]) => {
-      this.buyOrder = data.find((buyOrder: BuyOrder) => {
+      this.oldBuyOrder = data.filter((buyOrder: BuyOrder) => {
+        return buyOrder.uid === this.userService.uid;
+      }).find((buyOrder: BuyOrder) => {
         return this.orderName && this.orderName === buyOrder.name;
       });
 
-      if (this.buyOrder) {
-        this.buyOrderForm.controls['name'].setValue(this.buyOrder.name);
-        this.buyOrderForm.controls['maxBidPrice'].setValue(this.buyOrder.maxBidPrice);
-        this.buyOrderForm.controls['dataPackageType'].setValue(this.buyOrder.dataPackageType);
+      if (this.oldBuyOrder) {
+        this.buyOrderForm.controls['name'].setValue(this.oldBuyOrder.name);
+        this.buyOrderForm.controls['maxBidPrice'].setValue(this.oldBuyOrder.maxBidPrice);
+        this.buyOrderForm.controls['dataPackageType'].setValue(this.oldBuyOrder.dataPackageType);
       }
     });
 
@@ -67,13 +69,19 @@ export class AddEditBuyOrderPage {
   }
 
   save() {
-    if (this.buyOrder){
+    const newBuyOrder = {...this.buyOrderForm.value, uid: this.userService.uid};
 
-    } else {
-      const buyOrder = {...this.buyOrderForm.value, uid: this.userService.uid};
-      this.buyOrderService.addBuyOrder(buyOrder).then(() => {
-        this.navController.navigateBack('/buy-order-list');
-      });
-    }
+    if (this.oldBuyOrder){
+      this.buyOrderService.remove(this.oldBuyOrder.name);
+    } 
+
+    this.buyOrderService.addBuyOrder(newBuyOrder).then(() => {
+      this.navController.navigateBack('/buy-order-list');
+    });
+  }
+
+  remove() {
+    this.buyOrderService.remove(this.oldBuyOrder.name);
+    this.navController.navigateBack('/buy-order-list');
   }
 }
