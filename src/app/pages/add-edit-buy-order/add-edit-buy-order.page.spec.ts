@@ -61,7 +61,7 @@ describe('AddEditBuyOrderPage', () => {
         maxBidPrice: 100,
         dataPackageType: 'Device Location',
         uid: 'testUid'
-      }
+      };
 
       expect(component.buyOrderForm.value).toEqual({
         name: 'testName',
@@ -107,7 +107,7 @@ describe('AddEditBuyOrderPage', () => {
         maxBidPrice: 100,
         dataPackageType: 'Device Location',
         uid: userService.uid
-      }
+      };
 
       component.buyOrderForm.setValue(formObject);
       component.save();

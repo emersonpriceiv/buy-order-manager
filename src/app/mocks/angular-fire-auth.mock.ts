@@ -7,5 +7,5 @@ export class AngularFireAuthMock {
     signInWithEmailAndPassword: () => {},
     signOut: () => {},
     createUserWithEmailAndPassword: () => {}
-  }
+  };
 }

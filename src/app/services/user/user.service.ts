@@ -13,7 +13,7 @@ export class UserService {
       this.user = user;
     });
   }
-    
+
   get uid(): string {
     return this.user.uid;
   }
@@ -23,13 +23,13 @@ export class UserService {
   }
 
   signIn(credentials) {
-	  return this.firebaseAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+    return this.firebaseAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
   }
 
   signOut(): Promise<void> {
     return this.firebaseAuth.auth.signOut();
   }
-    
+
   signUp(credentials) {
     return this.firebaseAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }

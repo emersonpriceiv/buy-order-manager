@@ -12,9 +12,9 @@ export class AngularFireDatabaseMock {
     push: (item) => {
       this.items.push(item);
     }
-  }
+  };
 
   public list = () => {
     return this.listObject;
-  };
+  }
 }

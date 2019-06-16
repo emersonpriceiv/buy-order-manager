@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { NavController, AlertController } from '@ionic/angular';
 
 import { BuyOrder, DATA_PACKAGE_TYPE_OPTIONS } from '@interfaces';
 
 import { BuyOrderService, UserService } from '@services';
-import { NavController, AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -14,8 +14,8 @@ import { NavController, AlertController } from '@ionic/angular';
   templateUrl: './add-edit-buy-order.page.html',
   styleUrls: ['./add-edit-buy-order.page.scss'],
 })
-export class AddEditBuyOrderPage {
-  public title: string = 'Add';
+export class AddEditBuyOrderPage implements OnInit, OnDestroy {
+  public title = 'Add';
   public buyOrderForm: FormGroup;
   public dataPackageTypeOptions: string[] = DATA_PACKAGE_TYPE_OPTIONS;
 
@@ -42,15 +42,15 @@ export class AddEditBuyOrderPage {
     this._oldBuyOrder = buyOrder;
 
     if (buyOrder) {
-      this.buyOrderForm.controls['name'].setValue(this.oldBuyOrder.name);
-      this.buyOrderForm.controls['maxBidPrice'].setValue(this.oldBuyOrder.maxBidPrice);
-      this.buyOrderForm.controls['dataPackageType'].setValue(this.oldBuyOrder.dataPackageType);
+      this.buyOrderForm.controls.name.setValue(this.oldBuyOrder.name);
+      this.buyOrderForm.controls.maxBidPrice.setValue(this.oldBuyOrder.maxBidPrice);
+      this.buyOrderForm.controls.dataPackageType.setValue(this.oldBuyOrder.dataPackageType);
     }
   }
 
   ngOnInit() {
     this.paramsSub = this.route.params.subscribe(params => {
-      this.orderName = params['name'];
+      this.orderName = params.name;
 
       if (this.orderName) {
         this.title = 'Edit';
@@ -80,9 +80,9 @@ export class AddEditBuyOrderPage {
   public save() {
     const newBuyOrder = {...this.buyOrderForm.value, uid: this.userService.uid};
 
-    if (this.oldBuyOrder){
+    if (this.oldBuyOrder) {
       this.buyOrderService.remove(this.oldBuyOrder.name);
-    } 
+    }
 
     this.buyOrderService.addBuyOrder(newBuyOrder);
   }

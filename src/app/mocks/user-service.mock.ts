@@ -13,13 +13,13 @@ export class UserServiceMock {
   }
 
   signIn() {
-	  return new Promise(() => {});
+    return new Promise(() => {});
   }
 
   signOut(): Promise<void> {
     return new Promise(() => {});
   }
-    
+
   signUp() {
     return new Promise(() => {});
   }
